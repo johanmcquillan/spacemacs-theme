@@ -37,63 +37,63 @@
 (defmacro dyn-let (varlist fn setfaces setvars)
   (list 'let (append varlist (funcall fn)) setfaces setvars))
 
-(defgroup spacemacs-theme nil
-  "Spacemacs-theme options."
+(defgroup spacemcq-theme nil
+  "Spacemcq-theme options."
   :group 'faces)
 
-(defcustom spacemacs-theme-comment-bg t
+(defcustom spacemcq-theme-comment-bg t
   "Use a background for comment lines."
   :type 'boolean
-  :group 'spacemacs-theme)
+  :group 'spacemcq-theme)
 
-(defcustom spacemacs-theme-comment-italic nil
+(defcustom spacemcq-theme-comment-italic nil
   "Enable italics for comments and also disable background."
   :type 'boolean
-  :group 'spacemacs-theme)
+  :group 'spacemcq-theme)
 
-(defcustom spacemacs-theme-keyword-italic nil
+(defcustom spacemcq-theme-keyword-italic nil
   "Enable italics for keywords."
   :type 'boolean
-  :group 'spacemacs-theme)
+  :group 'spacemcq-theme)
 
-(defcustom spacemacs-theme-org-agenda-height nil
+(defcustom spacemcq-theme-org-agenda-height nil
   "If non-nil, use varying text heights for agenda items.
 
 Note that if you change this to a non-nil value, you may want to
 also adjust the value of `org-agenda-tags-column'. If that is set
 to 'auto, tags may not be properly aligned. "
   :type 'boolean
-  :group 'spacemacs-theme)
+  :group 'spacemcq-theme)
 
-(defcustom spacemacs-theme-org-height t
+(defcustom spacemcq-theme-org-height t
   "Use varying text heights for org headings."
   :type 'boolean
-  :group 'spacemacs-theme)
+  :group 'spacemcq-theme)
 
-(defcustom spacemacs-theme-org-bold t
+(defcustom spacemcq-theme-org-bold t
   "Inherit text bold for org headings"
   :type 'boolean
-  :group 'spacemacs-theme)
+  :group 'spacemcq-theme)
 
-(defcustom spacemacs-theme-org-priority-bold t
+(defcustom spacemcq-theme-org-priority-bold t
   "Inherit text bold for priority items in agenda view"
   :type 'boolean
-  :group 'spacemacs-theme)
+  :group 'spacemcq-theme)
 
-(defcustom spacemacs-theme-org-highlight nil
+(defcustom spacemcq-theme-org-highlight nil
   "Highlight org headings."
   :type 'boolean
-  :group 'spacemacs-theme)
+  :group 'spacemcq-theme)
 
-(defcustom spacemacs-theme-custom-colors nil
+(defcustom spacemcq-theme-custom-colors nil
   "Specify a list of custom colors."
   :type 'alist
-  :group 'spacemacs-theme)
+  :group 'spacemcq-theme)
 
-(defcustom spacemacs-theme-underline-parens t
+(defcustom spacemcq-theme-underline-parens t
   "If non-nil, underline matching parens when using `show-paren-mode' or similar."
   :type 'boolean
-  :group 'spacemacs-theme)
+  :group 'spacemcq-theme)
 
 (defun true-color-p ()
   (or
@@ -102,9 +102,9 @@ to 'auto, tags may not be properly aligned. "
 
 (defun custom-colors-override ()
   (mapcar (lambda (x) (list (car x) (cdr x)))
-          spacemacs-theme-custom-colors))
+          spacemcq-theme-custom-colors))
 
-(defun create-spacemacs-theme (variant theme-name)
+(defun create-spacemcq-theme (variant theme-name)
   (dyn-let ((class '((class color) (min-colors 89))) ;;              ~~ Dark ~~                              ~~ Light ~~
         ;;                                                          GUI       TER                           GUI       TER
         ;; generic
@@ -184,11 +184,11 @@ to 'auto, tags may not be properly aligned. "
      `(eval-sexp-fu-flash ((,class (:background ,suc :foreground ,bg1))))
      `(eval-sexp-fu-flash-error ((,class (:background ,err :foreground ,bg1))))
      `(font-lock-builtin-face ((,class (:foreground ,keyword))))
-     `(font-lock-comment-face ((,class (:foreground ,(if spacemacs-theme-comment-italic comment-light comment) :background ,(when spacemacs-theme-comment-bg comment-bg) :slant ,(if spacemacs-theme-comment-italic 'italic 'normal)))))
+     `(font-lock-comment-face ((,class (:foreground ,(if spacemcq-theme-comment-italic comment-light comment) :background ,(when spacemcq-theme-comment-bg comment-bg) :slant ,(if spacemcq-theme-comment-italic 'italic 'normal)))))
      `(font-lock-constant-face ((,class (:foreground ,const))))
      `(font-lock-doc-face ((,class (:foreground ,meta))))
      `(font-lock-function-name-face ((,class (:foreground ,func :inherit bold))))
-     `(font-lock-keyword-face ((,class (:inherit bold :foreground ,keyword :slant ,(if spacemacs-theme-keyword-italic 'italic 'normal)))))
+     `(font-lock-keyword-face ((,class (:inherit bold :foreground ,keyword :slant ,(if spacemcq-theme-keyword-italic 'italic 'normal)))))
      `(font-lock-negation-char-face ((,class (:foreground ,const))))
      `(font-lock-preprocessor-face ((,class (:foreground ,func))))
      `(font-lock-reference-face ((,class (:foreground ,const))))
@@ -575,12 +575,12 @@ to 'auto, tags may not be properly aligned. "
      `(font-latex-italic-face ((,class (:foreground ,keyword :italic t))))
      `(font-latex-match-reference-keywords ((,class (:foreground ,const))))
      `(font-latex-match-variable-keywords ((,class (:foreground ,var))))
-     `(font-latex-sectioning-0-face ((,class (:inherit bold :foreground ,head3 :height ,(if spacemacs-theme-org-height 1.3 1.0) :background ,(when spacemacs-theme-org-highlight head3-bg)))))
-     `(font-latex-sectioning-1-face ((,class (:inherit bold :foreground ,head4 :height ,(if spacemacs-theme-org-height 1.3 1.0) :background ,(when spacemacs-theme-org-highlight head4-bg)))))
-     `(font-latex-sectioning-2-face ((,class (:inherit bold :foreground ,head1 :height ,(if spacemacs-theme-org-height 1.3 1.0) :background ,(when spacemacs-theme-org-highlight head1-bg)))))
-     `(font-latex-sectioning-3-face ((,class (:inherit bold :foreground ,head2 :height ,(if spacemacs-theme-org-height 1.2 1.0) :background ,(when spacemacs-theme-org-highlight head2-bg)))))
-     `(font-latex-sectioning-4-face ((,class (:bold nil :foreground ,head3 :height ,(if spacemacs-theme-org-height 1.1 1.0) :background ,(when spacemacs-theme-org-highlight head3-bg)))))
-     `(font-latex-sectioning-5-face ((,class (:bold nil :foreground ,head4 :background ,(when spacemacs-theme-org-highlight head4-bg)))))
+     `(font-latex-sectioning-0-face ((,class (:inherit bold :foreground ,head3 :height ,(if spacemcq-theme-org-height 1.3 1.0) :background ,(when spacemcq-theme-org-highlight head3-bg)))))
+     `(font-latex-sectioning-1-face ((,class (:inherit bold :foreground ,head4 :height ,(if spacemcq-theme-org-height 1.3 1.0) :background ,(when spacemcq-theme-org-highlight head4-bg)))))
+     `(font-latex-sectioning-2-face ((,class (:inherit bold :foreground ,head1 :height ,(if spacemcq-theme-org-height 1.3 1.0) :background ,(when spacemcq-theme-org-highlight head1-bg)))))
+     `(font-latex-sectioning-3-face ((,class (:inherit bold :foreground ,head2 :height ,(if spacemcq-theme-org-height 1.2 1.0) :background ,(when spacemcq-theme-org-highlight head2-bg)))))
+     `(font-latex-sectioning-4-face ((,class (:bold nil :foreground ,head3 :height ,(if spacemcq-theme-org-height 1.1 1.0) :background ,(when spacemcq-theme-org-highlight head3-bg)))))
+     `(font-latex-sectioning-5-face ((,class (:bold nil :foreground ,head4 :background ,(when spacemcq-theme-org-highlight head4-bg)))))
      `(font-latex-string-face ((,class (:foreground ,str))))
      `(font-latex-warning-face ((,class (:foreground ,war))))
 
@@ -650,10 +650,10 @@ to 'auto, tags may not be properly aligned. "
      `(Man-underline ((,class (:foreground ,comp :underline t))))
 
 ;;;;; markdown
-     `(markdown-header-face-1 ((,class (:inherit bold :foreground ,head1 :height ,(if spacemacs-theme-org-height 1.3 1.0) :background ,(when spacemacs-theme-org-highlight head1-bg)))))
-     `(markdown-header-face-2 ((,class (:inherit bold :foreground ,head2 :height ,(if spacemacs-theme-org-height 1.2 1.0) :background ,(when spacemacs-theme-org-highlight head2-bg)))))
-     `(markdown-header-face-3 ((,class (:bold nil :foreground ,head3 :height ,(if spacemacs-theme-org-height 1.1 1.0) :background ,(when spacemacs-theme-org-highlight head3-bg)))))
-     `(markdown-header-face-4 ((,class (:bold nil :foreground ,head4 :background ,(when spacemacs-theme-org-highlight head4-bg)))))
+     `(markdown-header-face-1 ((,class (:inherit bold :foreground ,head1 :height ,(if spacemcq-theme-org-height 1.3 1.0) :background ,(when spacemcq-theme-org-highlight head1-bg)))))
+     `(markdown-header-face-2 ((,class (:inherit bold :foreground ,head2 :height ,(if spacemcq-theme-org-height 1.2 1.0) :background ,(when spacemcq-theme-org-highlight head2-bg)))))
+     `(markdown-header-face-3 ((,class (:bold nil :foreground ,head3 :height ,(if spacemcq-theme-org-height 1.1 1.0) :background ,(when spacemcq-theme-org-highlight head3-bg)))))
+     `(markdown-header-face-4 ((,class (:bold nil :foreground ,head4 :background ,(when spacemcq-theme-org-highlight head4-bg)))))
      `(markdown-header-face-5 ((,class (:bold nil :foreground ,head1))))
      `(markdown-header-face-6 ((,class (:bold nil :foreground ,head2))))
      `(markdown-table-face ((,class (:foreground ,base :background ,head1-bg))))
@@ -707,10 +707,10 @@ to 'auto, tags may not be properly aligned. "
 
 ;;;;; org
      `(org-agenda-clocking ((,class (:background ,highlight :foreground ,comp))))
-     `(org-agenda-date ((,class (:foreground ,var :height ,(if spacemacs-theme-org-agenda-height 1.1 1.0)))))
-     `(org-agenda-date-today ((,class (:foreground ,keyword :inherit bold :height ,(if spacemacs-theme-org-agenda-height 1.3 1.0)))))
+     `(org-agenda-date ((,class (:foreground ,var :height ,(if spacemcq-theme-org-agenda-height 1.1 1.0)))))
+     `(org-agenda-date-today ((,class (:foreground ,keyword :inherit bold :height ,(if spacemcq-theme-org-agenda-height 1.3 1.0)))))
      `(org-agenda-date-weekend ((,class (:inherit bold :foreground ,var))))
-     `(org-agenda-done ((,class (:foreground ,suc :height ,(if spacemacs-theme-org-agenda-height 1.2 1.0)))))
+     `(org-agenda-done ((,class (:foreground ,suc :height ,(if spacemcq-theme-org-agenda-height 1.2 1.0)))))
      `(org-agenda-structure ((,class (:inherit bold :foreground ,comp))))
      `(org-block ((,class (:background ,cblk-bg :foreground ,cblk))))
      `(org-block-begin-line ((,class (:background ,cblk-ln-bg :foreground ,cblk-ln))))
@@ -722,16 +722,16 @@ to 'auto, tags may not be properly aligned. "
      `(org-date ((,class (:underline t :foreground ,var))))
      `(org-date-selected ((,class (:background ,func :foreground ,bg1))))
      `(org-document-info-keyword ((,class (:foreground ,meta))))
-     `(org-document-title ((,class (:foreground ,func :inherit bold :height ,(if spacemacs-theme-org-height 1.4 1.0) :underline t))))
+     `(org-document-title ((,class (:foreground ,func :inherit bold :height ,(if spacemcq-theme-org-height 1.4 1.0) :underline t))))
      `(org-done ((,class (:foreground ,suc :inherit bold :background ,green-bg))))
      `(org-ellipsis ((,class (:foreground ,keyword))))
      `(org-footnote  ((,class (:underline t :foreground ,base))))
      `(org-hide ((,class (:foreground ,base))))
      `(org-kbd ((,class (:inherit region :foreground ,base :box (:line-width 1 :style released-button)))))
-     `(org-level-1 ((,class (:inherit bold :bold ,(if spacemacs-theme-org-bold 'unspecified nil) :foreground ,head1 :height ,(if spacemacs-theme-org-height 1.3 1.0) :background ,(when spacemacs-theme-org-highlight head1-bg)))))
-     `(org-level-2 ((,class (:inherit bold :bold ,(if spacemacs-theme-org-bold 'unspecified nil) :foreground ,head2 :height ,(if spacemacs-theme-org-height 1.2 1.0) :background ,(when spacemacs-theme-org-highlight head2-bg)))))
-     `(org-level-3 ((,class (:bold nil :foreground ,head3 :height ,(if spacemacs-theme-org-height 1.1 1.0) :background ,(when spacemacs-theme-org-highlight head3-bg)))))
-     `(org-level-4 ((,class (:bold nil :foreground ,head4 :background ,(when spacemacs-theme-org-highlight head4-bg)))))
+     `(org-level-1 ((,class (:inherit bold :bold ,(if spacemcq-theme-org-bold 'unspecified nil) :foreground ,head1 :height ,(if spacemcq-theme-org-height 1.3 1.0) :background ,(when spacemcq-theme-org-highlight head1-bg)))))
+     `(org-level-2 ((,class (:inherit bold :bold ,(if spacemcq-theme-org-bold 'unspecified nil) :foreground ,head2 :height ,(if spacemcq-theme-org-height 1.2 1.0) :background ,(when spacemcq-theme-org-highlight head2-bg)))))
+     `(org-level-3 ((,class (:bold nil :foreground ,head3 :height ,(if spacemcq-theme-org-height 1.1 1.0) :background ,(when spacemcq-theme-org-highlight head3-bg)))))
+     `(org-level-4 ((,class (:bold nil :foreground ,head4 :background ,(when spacemcq-theme-org-highlight head4-bg)))))
      `(org-level-5 ((,class (:bold nil :foreground ,head1))))
      `(org-level-6 ((,class (:bold nil :foreground ,head2))))
      `(org-level-7 ((,class (:bold nil :foreground ,head3))))
@@ -739,10 +739,10 @@ to 'auto, tags may not be properly aligned. "
      `(org-link ((,class (:underline t :foreground ,comment))))
      `(org-meta-line ((,class (:foreground ,meta))))
      `(org-mode-line-clock-overrun ((,class (:foreground ,err))))
-     `(org-priority ((,class (:foreground ,war :inherit bold :bold ,(if spacemacs-theme-org-priority-bold 'unspecified nil)))))
+     `(org-priority ((,class (:foreground ,war :inherit bold :bold ,(if spacemcq-theme-org-priority-bold 'unspecified nil)))))
      `(org-quote ((,class (:inherit org-block :slant italic))))
      `(org-scheduled ((,class (:foreground ,comp))))
-     `(org-scheduled-today ((,class (:foreground ,func :height ,(if spacemacs-theme-org-agenda-height 1.2 1.0)))))
+     `(org-scheduled-today ((,class (:foreground ,func :height ,(if spacemcq-theme-org-agenda-height 1.2 1.0)))))
      `(org-scheduled-previously ((,class (:foreground ,base :slant italic))))
      `(org-sexp-date ((,class (:foreground ,base))))
      `(org-special-keyword ((,class (:foreground ,func))))
@@ -810,13 +810,13 @@ to 'auto, tags may not be properly aligned. "
      `(shm-quarantine-face ((,class (:background ,red-bg-s))))
 
 ;;;;; show-paren
-     `(show-paren-match ((,class (:foreground ,mat :inherit bold  :underline ,(when spacemacs-theme-underline-parens t)))))
+     `(show-paren-match ((,class (:foreground ,mat :inherit bold  :underline ,(when spacemcq-theme-underline-parens t)))))
      `(show-paren-match-expression ((,class (:background ,green-bg-s))))
-     `(show-paren-mismatch ((,class (:foreground ,err :inherit bold :underline ,(when spacemacs-theme-underline-parens t)))))
+     `(show-paren-mismatch ((,class (:foreground ,err :inherit bold :underline ,(when spacemcq-theme-underline-parens t)))))
 
 ;;;;; smartparens
      `(sp-pair-overlay-face ((,class (:background ,highlight :foreground nil))))
-     `(sp-show-pair-match-face ((,class (:foreground ,mat :inherit bold  :underline ,(when spacemacs-theme-underline-parens t)))))
+     `(sp-show-pair-match-face ((,class (:foreground ,mat :inherit bold  :underline ,(when spacemcq-theme-underline-parens t)))))
 
 ;;;;; smerge
      `(smerge-base ((,class (:background ,yellow-bg))))
@@ -971,7 +971,7 @@ to 'auto, tags may not be properly aligned. "
   (add-to-list 'custom-theme-load-path
                (file-name-as-directory (file-name-directory load-file-name))))
 
-(provide 'spacemacs-common)
+(provide 'spacemcq-common)
 
 ;; Local Variables:
 ;; no-byte-compile: t
